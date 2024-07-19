@@ -1,0 +1,18 @@
+@import "variebles";
+body{
+  margin: 0;
+  min-height: 100vh;
+
+}
+.light-theme {
+  --appBackground: #{$white};
+  color:$black;
+  .defaultLink{
+    color: $main_purple;
+  }
+}
+
+.dark-theme {
+  --appBackground: #{$black};
+  color:$white;
+}

@@ -1,0 +1,16 @@
+
+.layoutBlock{
+    background-color: var(--appBackground);
+}
+.wrapperMainContent{
+    min-height: calc(100vh - 84px);
+    display: flex;
+    flex-direction: column;
+}
+.containerFullHeight{
+    flex: 1;
+    display: flex!important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
