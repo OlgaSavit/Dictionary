@@ -1,0 +1,14 @@
+@import "variebles";
+body{
+  margin: 0;
+}
+.light-theme {
+  --appBackground: #{$white};
+  --mainColor:$black;
+}
+
+.dark-theme {
+  --appBackground: #{$black};
+  --mainColor:$white;
+
+}
