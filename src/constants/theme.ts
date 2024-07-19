@@ -6,26 +6,26 @@ const commonColor = {
     commonDark: "#181B23",
     red: "#F85C50",
   },
-}
+};
 
-const light = {
-  colors: {
+const ColorsTheme = {
+  dark: {
+    ...commonColor.colors,
+    appBackground: "#181B23",
+    textColor: "#ffffff",
+    linkColor: "#90caf9",
+
+    white: "#000",
+    black: "#ffffff",
+  },
+  light: {
     ...commonColor.colors,
     appBackground: "#ffffff",
     textColor: "#000000",
+    linkColor: "#ffffff",
 
     white: "#ffffff",
     black: "#000",
   },
-}
-const dark = {
-  colors: {
-    ...commonColor.colors,
-    appBackground: "#181B23",
-    textColor: "#ffffff",
-    white: "#000",
-    black: "#ffffff",
-  },
-}
-
-export { light, dark }
+};
+export { ColorsTheme };

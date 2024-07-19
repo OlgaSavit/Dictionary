@@ -1,27 +1,44 @@
-import React from "react"
-import { Container, Drawer, Grid, List, ListItem, ListItemButton, ListItemText, Stack, Switch } from "@mui/material"
-import { AppBar, Box, Toolbar, IconButton } from "@mui/material"
-import MenuIcon from "@mui/icons-material/Menu"
-import AccountCircle from "@mui/icons-material/AccountCircle"
-import FormControlLabel from "@mui/material/FormControlLabel"
-import FormGroup from "@mui/material/FormGroup"
-import { useNavigate } from "react-router-dom"
+import React from "react";
+import {
+  Button,
+  Container,
+  Drawer,
+  Grid,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Stack,
+  Switch,
+} from "@mui/material";
+import { AppBar, Box, Toolbar, IconButton } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormGroup from "@mui/material/FormGroup";
+import { useNavigate } from "react-router-dom";
 
-import { RouterPath } from "@/routers/routerPath"
-import Link from "@/components/Link"
+import { RouterPath } from "@/routers/routerPath";
+import Link from "@/components/Link";
 
-import { useHeaderNavigation } from "@/components/Header/useHeaderNavigation"
+import { useHeaderNavigation } from "@/components/Header/useHeaderNavigation";
+import Icon from "@/components/Icon";
+import { ColorsTheme } from "@/constants/theme";
 
 interface HeaderComponentInterface {
-  title: string
-  isDarkTheme: boolean
-  isAuthenticated: boolean
-  onChangeTheme: (val: boolean) => void
+  title: string;
+  isDarkTheme: boolean;
+  isAuthenticated: boolean;
+  onChangeTheme: (val: boolean) => void;
 }
 
-const Header: React.FC<HeaderComponentInterface> = ({ onChangeTheme, isDarkTheme, isAuthenticated }) => {
-  const navigate = useNavigate()
-  const { mobileMenuOpen, onOpenMobileMenu } = useHeaderNavigation()
+const Header: React.FC<HeaderComponentInterface> = ({
+  onChangeTheme,
+  isDarkTheme,
+  isAuthenticated,
+}) => {
+  const navigate = useNavigate();
+  const { mobileMenuOpen, onOpenMobileMenu, onLogout } = useHeaderNavigation();
   const menuLinksList = [
     {
       label: "All topics",
@@ -35,10 +52,10 @@ const Header: React.FC<HeaderComponentInterface> = ({ onChangeTheme, isDarkTheme
       label: "Create topics",
       href: RouterPath.createTopicPage,
     },
-  ]
+  ];
   const goToLink = (path: string) => {
-    path && navigate(path)
-  }
+    path && navigate(path);
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -47,14 +64,25 @@ const Header: React.FC<HeaderComponentInterface> = ({ onChangeTheme, isDarkTheme
             <Toolbar disableGutters>
               <Grid container>
                 <Grid item xs={2} sm={5}>
-                  <Stack direction="row" alignItems="center" spacing={2} height={"100%"}>
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    spacing={2}
+                    height={"100%"}
+                  >
                     <Box
                       sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
                       onClick={() => {
-                        onOpenMobileMenu(true)
+                        onOpenMobileMenu(true);
                       }}
                     >
-                      <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+                      <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{ mr: 2 }}
+                      >
                         <MenuIcon />
                       </IconButton>
                     </Box>
@@ -70,25 +98,36 @@ const Header: React.FC<HeaderComponentInterface> = ({ onChangeTheme, isDarkTheme
                           <Link key={index} href={item.href}>
                             {item.label}
                           </Link>
-                        )
+                        );
                       })}
                     </Stack>
                   </Stack>
                 </Grid>
                 <Grid item xs={2}>
-                  <Stack direction="row" justifyContent="center" alignItems="center" height={"100%"}>
+                  <Stack
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
+                    height={"100%"}
+                  >
                     <p>Dictionary</p>
                   </Stack>
                 </Grid>
                 <Grid item xs={8} sm={5}>
-                  <Stack direction="row" justifyContent="flex-end" alignItems="center" spacing={2} height={"100%"}>
+                  <Stack
+                    direction="row"
+                    justifyContent="flex-end"
+                    alignItems="center"
+                    spacing={2}
+                    height={"100%"}
+                  >
                     <FormGroup>
                       <FormControlLabel
                         control={
                           <Switch
                             checked={isDarkTheme}
                             onChange={() => {
-                              onChangeTheme(!isDarkTheme)
+                              onChangeTheme(!isDarkTheme);
                             }}
                             aria-label="login switch"
                           />
@@ -97,18 +136,30 @@ const Header: React.FC<HeaderComponentInterface> = ({ onChangeTheme, isDarkTheme
                       />
                     </FormGroup>
                     {isAuthenticated ? (
-                      <Link href={RouterPath.accountPage}>
-                        <IconButton
-                          size="large"
-                          aria-label="account of current user"
-                          aria-controls="menu-appbar"
-                          aria-haspopup="true"
-                          onClick={() => {}}
-                          color="inherit"
-                        >
-                          <AccountCircle />
-                        </IconButton>
-                      </Link>
+                      <Box>
+                        <Link href={RouterPath.accountPage}>
+                          <IconButton
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={() => {}}
+                            color="inherit"
+                          >
+                            <AccountCircle />
+                          </IconButton>
+                        </Link>
+                        <Button onClick={onLogout}>
+                          <Icon
+                            size={20}
+                            color={
+                              ColorsTheme[isDarkTheme ? "dark" : "light"]
+                                .linkColor
+                            }
+                            icon={"logout"}
+                          />
+                        </Button>
+                      </Box>
                     ) : (
                       <Link color={"secondary"} href={RouterPath.signInPage}>
                         Sign In
@@ -121,7 +172,7 @@ const Header: React.FC<HeaderComponentInterface> = ({ onChangeTheme, isDarkTheme
                 anchor={"left"}
                 open={mobileMenuOpen}
                 onClose={() => {
-                  onOpenMobileMenu(false)
+                  onOpenMobileMenu(false);
                 }}
               >
                 <Box
@@ -135,7 +186,7 @@ const Header: React.FC<HeaderComponentInterface> = ({ onChangeTheme, isDarkTheme
                       <ListItem key={index} disablePadding>
                         <ListItemButton
                           onClick={() => {
-                            goToLink(item.href)
+                            goToLink(item.href);
                           }}
                         >
                           <ListItemText primary={item.label} />
@@ -150,6 +201,6 @@ const Header: React.FC<HeaderComponentInterface> = ({ onChangeTheme, isDarkTheme
         </Toolbar>
       </AppBar>
     </Box>
-  )
-}
-export default Header
+  );
+};
+export default Header;

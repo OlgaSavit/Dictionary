@@ -1,0 +1,72 @@
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+/* ==========================================
+Single-colored icons can be modified like so:
+.icon-name {
+  font-size: 32px;
+  color: red;
+}
+========================================== */
+
+.icon-attention {
+  width: 1.015625em;
+}
+
+.icon-check-success {
+  width: 1.015625em;
+}
+
+.icon-remove {
+  width: 1.0556640625em;
+}
+
+.icon-hryvnya {
+  width: 1.0625em;
+}
+
+.icon-Vector-21 {
+  width: 1.0556640625em;
+}
+
+.icon-unvisible {
+  width: 1.0419921875em;
+}
+
+.icon-visible {
+  width: 1.0419921875em;
+}
+
+.icon-share {
+  width: 1.0419921875em;
+}
+
+.icon-close {
+  width: 1.0419921875em;
+}
+
+.icon-line {
+  width: 1.0419921875em;
+}
+
+.icon-new-post {
+  width: 1.0419921875em;
+}
+
+.icon-arrow-left {
+  width: 1.0419921875em;
+}
+
+.icon-filter {
+  width: 1.0419921875em;
+}
+
+.icon-plus {
+  width: 1.0419921875em;
+}
